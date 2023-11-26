@@ -1,0 +1,31 @@
+from tools import logger
+import os
+
+
+def test_1():
+    path = 'main.log.txt'
+    if os.path.exists(path):
+        os.remove(path)
+
+@logger
+def hello_world():
+    return 'Hello World'
+
+@logger
+def summator(a, b=0):
+    return a + b
+
+@logger
+def div(a, b):
+    return a / b
+
+@logger
+def test_1():
+    path = 'main.log'
+    if os.path.exists(path):
+        os.remove(path)
+
+if __name__ == '__main__':
+    summator(4.3, 2.2)
+
+

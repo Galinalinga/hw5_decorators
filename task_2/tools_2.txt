@@ -1,0 +1,28 @@
+# 2. Доработать параметризованный декоратор logger в коде ниже. Должен получиться декоратор, который записывает в файл
+# дату и время вызова функции, имя функции, аргументы, с которыми вызвалась, и возвращаемое значение.
+# Путь к файлу должен передаваться в аргументах декоратора.
+# Функция test_2 в коде ниже также должна отработать без ошибок.
+
+import datetime
+import requests
+import os
+
+
+
+def logger(path):
+    ...
+    def __logger(oldfunction):
+        def new_function(*args, **kwargs):
+            start = datetime.datetime.now()
+            result = oldfunction(*args, **kwargs)
+            name_func = oldfunction.__name__
+
+            with open(f'{path}', 'w', encoding='utf-8') as file:
+                file.write(f'Дата/время вызова функции: {start}\n'
+                           f'Имя функции: {name_func}\n'
+                           f'Аргументы: {args, kwargs}\n'
+                           f'Возвращаемое значение: {result}\n'
+                           )
+            return result
+        return new_function
+    return __logger
